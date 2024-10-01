@@ -1,16 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>thereefor</title>
-</head>
-<body>
-    helloworld
-</body>
-</html>
--->
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -18,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>the reefor</title>
+        <title>Scrolling Nav - Start Bootstrap Template</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
@@ -27,13 +14,16 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container px-4">
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#page-top">Therefore, The Reefor</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#q0">0</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#q1">1</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#q2">2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#q3">3</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#q4">4</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#q5">!</a></li>
                     </ul>
                 </div>
             </div>
@@ -42,44 +32,78 @@
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Welcome to The Reefor</h1>
-                <p class="lead">The Reefor는 그럼에도 도전을 계속하는 사람들을 위한 디지털기록보관소입니다.</p>
-                <a class="btn btn-lg btn-light" href="#about">답변을 시작하시겠습니까?</a>
+                <p class="lead">A digital repository about experieces in your life<br>더 리포는 그럼에도 불구하고, 계속해서 도전을 하는 사람들을 위한 아카이빙 페이지입니다. </p>
+                <a class="btn btn-lg btn-light" href="#q1">Start!</a>
             </div>
         </header>
-        <!-- About section-->
-        <section id="about">
+        <section class="bg-light" id="q0">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
-                        <h2>About this page</h2>
-                        <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
-                        <ul>
-                            <li>Clickable nav links that smooth scroll to page sections</li>
-                            <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-                            <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar</li>
-                            <li>Minimal custom CSS so you are free to explore your own unique design options</li>
-                        </ul>
+                        <h2>닉네임을 설정해주세요!</h2>
+                        <p class="lead">실명이 아니어도 되며, 자신이 기록되길 바라는 이름 무엇이든 작성해주시면 됩니다. <br>이 닉네임은 다음 관람자들에게 보여질 수 있습니다. </p>
+                        <form action="./result.html" mehtod="get">
+                            <label for="name">Nickname</label>
+                            <input id="name" name="my-name" type="text" />
+                            <button type="submit">next</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About section-->
+        <section id="q1">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Q1. 당신이 해본 가장 큰 도전은 무엇이었나요?</h2>
+                        <form action="./result.html" mehtod="get">
+                            <label for="q1">A1.</label>
+                            <input id="a1" name="q1" type="text" />
+                            <button type="submit">next</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
         </section>
         <!-- Services section-->
-        <section class="bg-light" id="services">
+        <section class="bg-light" id="q2">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
-                        <h2>Services we offer</h2>
+                        <h2>Q2. 그 도전을 후회하시나요?</h2>
                         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Contact section-->
-        <section id="contact">
+        <section id="q3">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
-                        <h2>Contact us</h2>
+                        <h2>Q3. 앞으로 하고 싶은 도전은 무엇인가요? <br>그 도전까지는 얼마만큼의 시간이 걸릴까요?</h2>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-light" id="q4">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Q4. 도전을 하는 자기자신에게 한 마디를 해주세요.</h2>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+                    </div>
+                </div>
+            </div>
+        <section id="q5">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>이메일 주소를 입력해주시면,<br> 6개월 뒤 리마인드 메일을 보내드립니다.</h2>
                         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
                     </div>
                 </div>
