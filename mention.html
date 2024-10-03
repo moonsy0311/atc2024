@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mention Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: steelblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>감사합니다!</h1>
+    <p>당신의 답변은:</p>
+    <p id="user-answer"></p>
+
+    <button onclick="goToResult()">결과 보기</button>
+
+    <script>
+        // Retrieve the q4-answer from localStorage and display it
+        const q4Answer = localStorage.getItem('q4-answer');
+        document.getElementById('user-answer').textContent = q4Answer ? q4Answer : '답변이 없습니다.';
+
+        function goToResult() {
+            window.location.href = 'result.html';
+        }
+    </script>
+</body>
+</html>
