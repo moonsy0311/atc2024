@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Results - The Reefor</title>
+</head>
+<body>
+    <h1>제출된 답변</h1>
+    <div id="results"></div>
+
+    <button onclick="goToSubmitPage()">답변 작성하기</button>
+    <button onclick="clearStorage()">모든 답변 삭제</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const allAnswers = JSON.parse(localStorage.getItem('allAnswers')) || [];
+            const resultsDiv = document.getElementById('results');
+
+            if (allAnswers.length === 0) {
+                resultsDiv.innerHTML = "<p>제출된 답변이 없습니다.</p>";
+                return;
+            }
+
+            allAnswers.forEach((answer, index) => {
+                resultsDiv.innerHTML += `
+                    <h2>답변 ${index + 1}</h2>
+                    <p>닉네임: ${answer.nickname}</p>
+                    <p>Q1: ${answer.answer1}</p>
+                    <p>Q2: ${answer.answer2}</p>
+                    <p>Q3: ${answer.answer3}</p>
+                    <p>Q4: ${answer.answer4}</p>
+                    <p>이메일: ${answer.email}</p>
+                    <hr>
+                `;
+            });
+        });
+
+        function clearStorage() {
+            localStorage.removeItem('allAnswers');
+            document.getElementById('results').innerHTML = "<p>모든 답변이 삭제되었습니다.</p>";
+        }
+
+        function goToSubmitPage() {
+            window.location.href = 'index.html'; // 답변 작성 페이지로 이동
+        }
+    </script>
+</body>
+</html>
