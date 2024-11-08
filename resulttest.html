@@ -131,7 +131,7 @@
 <body>
     <div id="container">
         <div class="header">
-            <h1><a href="/atc/atc_1003/index.html">Therefore, TheReefor 다시 시작하기💨</a></h1>
+            <h1><a href="https://moonsy0311.github.io/atc2024/">Therefore, TheReefor 다시 시작하기💨</a></h1>
         </div>
     </div>
     <div id="dataDisplay" class="hidden">
@@ -181,39 +181,7 @@
 
             container.appendChild(circle);
         }
-
-        /*
-        function fetchData() {
-            fetch('https://moonsy0311.github.io/atc2024/mention.html')
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data,'text/html');
-                    const jsonData = JSON.parse(doc.querySelector('script[type="application/json"]').textContent);
-
-                    currentAnswers = jsonData;
-                    if (currentAnswers.length>0) {
-                        createCircle(currentAnswers[answerIndex]);
-                        answerIndex++;
-                        setInterval(() => {
-                            if (answerIndex < currentAnswers.length) {
-                                createCircle(currentAnswers[answerIndex]);
-                                answerIndex++;
-                            } else{
-                                clearInterval(this);
-                            }
-                        }, 500);
-                    }  else {
-                        alert ("제출된 답변이 없습니다.");
-                    }
-            })
-            .catch(error => {
-                console.error("데이터를 가져오는 데 실패했습니다:", error);
-
-            });
-        }
-        */
-        
+       
 
         function fetchData() {
             const allAnswers = JSON.parse(localStorage.getItem('allAnswers')) || [];
