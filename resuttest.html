@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resulttest</title>
+    <style>
+
+        @font-face {
+            font-family: mo;
+            src: url(font/neodgm.ttf) format('woff');
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #container .header{
+            width: 100%;
+            height: 80px; 
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #344259;
+            font-size: small;
+            font-family: mo;
+        }
+
+        #container .header h1 a{
+            text-decoration: none;
+            color: white;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #container .header h1 a:hover {
+            color: #FFD700; /* 연노랑색 */
+        }
+
+        .circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0,0,255,0.6);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: gainsboro;
+            font-weight: bold;
+            font-family: mo;
+            transition: color 0.3s; /* 색상 변화에 애니메이션 추가 */
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+
+        .circle:hover{
+            color: #ffc400;
+            background-color: rgb(56, 126, 255);
+        }
+
+
+        #dataDisplay h2 {
+            font-family: mo;
+            line-height: 4; /* h2의 행간 조정 */
+        }   
+
+        #dataContentwrapper{
+            width: 600px;
+            height: 500px;
+            background-color: transparent;
+            border: 5px solid white;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #backButton{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-family: mo;
+            background-color: gray;
+            color: white;
+        }
+
+        #backButton:hover{
+            background-color: darkgray;
+            color: black;
+        }
+
+
+
+        #dataContent p {
+            font-family: mo;
+            line-height: 2; /* p 요소의 행간 조정 */
+        }
+        
+        .hidden {
+            display: none;
+        }
+
+        .q-txt{
+            color: gray ;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="header">
+            <h1><a href="/atc/atc_1003/index.html">Therefore, TheReefor 다시 시작하기💨</a></h1>
+        </div>
+    </div>
+    <div id="dataDisplay" class="hidden">
+        <div id="dataContentwrapper">
+            <h2>답변 데이터</h2>
+            <div id="dataContent"></div>
+            <button id="backButton">X</button>
+        </div>
+    </div>
+
+
+    <script>
+        const container = document.getElementById('container');
+        const dataDisplay = document.getElementById('dataDisplay');
+        const dataContent = document.getElementById('dataContent');
+        const backButton = document.getElementById('backButton');
+
+        let currentAnswers = []; // 현재 답변 저장
+        let answerIndex = 0; // 현재 답변 인덱스
+
+
+        function createCircle(answer) {
+            const circle = document.createElement('div');
+            circle.className = 'circle';
+            circle.style.width = '200px'; // 원의 크기 조정
+            circle.style.height = '200px'; // 원의 크기 조정
+            circle.style.lineHeight = '100px'; // 텍스트 수직 정렬
+            circle.style.lineHeight = '20px';
+            circle.style.fontSize = '20px'; // 글자 크기 조정
+            circle.style.textAlign = 'center';
+
+
+            const headerHeight = document.querySelector('.header').offsetHeight;
+            const viewportHeight = window.innerHeight - headerHeight;
+            const viewportWidth = window.innerWidth;
+
+            const topPosition = Math.random() * (viewportHeight -headerHeight - 200);  // 원의 높이만큼 빼주기
+            const leftPosition = Math.random() * (viewportWidth - 200); // 원의 너비만큼 빼주기
+
+            circle.style.top = topPosition + 'px';
+            circle.style.left = leftPosition + 'px';
+            circle.textContent = answer.answer4; // 원 클릭 안내
+
+            circle.addEventListener('click', () => {
+                showData(answer);
+            });
+
+            container.appendChild(circle);
+        }
+
+        /*
+        function fetchData() {
+            fetch('https://moonsy0311.github.io/atc2024/mention.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data,'text/html');
+                    const jsonData = JSON.parse(doc.querySelector('script[type="application/json"]').textContent);
+
+                    currentAnswers = jsonData;
+                    if (currentAnswers.length>0) {
+                        createCircle(currentAnswers[answerIndex]);
+                        answerIndex++;
+                        setInterval(() => {
+                            if (answerIndex < currentAnswers.length) {
+                                createCircle(currentAnswers[answerIndex]);
+                                answerIndex++;
+                            } else{
+                                clearInterval(this);
+                            }
+                        }, 500);
+                    }  else {
+                        alert ("제출된 답변이 없습니다.");
+                    }
+            })
+            .catch(error => {
+                console.error("데이터를 가져오는 데 실패했습니다:", error);
+
+            });
+        }
+        */
+        
+
+        function fetchData() {
+            const allAnswers = JSON.parse(localStorage.getItem('allAnswers')) || [];
+            currentAnswers = allAnswers; // 모든 답변 저장
+            if (currentAnswers.length > 0) {
+                createCircle(currentAnswers[answerIndex]); // 첫 번째 답변으로 동그라미 생성
+                answerIndex++; // 다음 인덱스로 이동
+                setInterval(() => {
+                    if (answerIndex < currentAnswers.length) {
+                        createCircle(currentAnswers[answerIndex]);
+                        answerIndex++;
+                    } else {
+                        clearInterval(this);
+                    }
+                }, 500);
+            } else {
+                alert("제출된 답변이 없습니다.");
+            }
+        }
+            
+
+        function showData(answer) {
+            const headerText = `${answer.answer1}의 용기`; // 첫 번째 답변을 이용한 텍스트 생성
+            const h2Element = dataDisplay.querySelector('h2');
+            h2Element.textContent = headerText; // h2에 첫 번째 답변으로 변경
+
+
+
+            dataContent.innerHTML = `
+                <p class="q-txt">지금까지 중, 가장 큰 도전은?</p>
+                <p class="a-txt"> :${answer.answer1}</p>
+                <p class="q-txt">그 도전을 후회하나요?</p>
+                <p class="a-txt"> :${answer.answer2}</p>
+                <p class="q-txt">앞으로 해보고 싶은 도전은?</p>
+                <p class="a-txt"> :${answer.answer3}</p>
+                <p class="q-txt"><br>응원의 한마디!</p>
+                <p class="a-txt"> :${answer.answer4}</p>
+            `;
+            container.classList.add('hidden');
+            dataDisplay.classList.remove('hidden');
+        }
+
+        backButton.addEventListener('click', () => {
+            dataDisplay.classList.add('hidden');
+            container.classList.remove('hidden');
+        });
+
+        // 데이터 가져오기
+        fetchData(); // 초기 호출
+
+    </script>
+</body>
+</html>
