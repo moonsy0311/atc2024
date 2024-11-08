@@ -22,6 +22,7 @@
     <p id="user-answer"></p>
 
     <button onclick="goToResult()">결과 보기</button>
+    <button onclick="goToFinal()">다른 사람들 답변 보기</button>
 
     <script>
         // Retrieve the q4-answer from localStorage and display it
@@ -30,6 +31,10 @@
 
         function goToResult() {
             window.location.href = 'result.html';
+        }
+
+        function goToFinal() {
+            window.location.href = 'resulttest.html';
         }
     </script>
 </body>
