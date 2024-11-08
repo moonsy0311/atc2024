@@ -1,42 +1,105 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mention Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>당신에게 남기는 한 마디</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="css/styles.css" rel="stylesheet" />
     <style>
+        @font-face {
+            font-family: 'pixel';
+            src: url(font/neodgm.ttf) format('truetype');
+        }
+
+        @font-face {
+            font-family: 'pretendard';
+            src: url('font/pretendard.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'senaru';
+            src: url('font/senaru.otf') format('opentype');
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            padding: 50px;
+            background-color: black;
+            color: white;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
+
         h1 {
-            color: steelblue;
+            font-family: 'pixel';
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        p {
+            font-family: 'pixel';
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h3.pixel-font {
+            font-family: 'pixel';
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+
+        .button-container {
+            display: flex; /* Use flexbox to arrange buttons horizontally */
+            gap: 50px; /* Space between buttons */
+            margin-top: 200px; /* Margin above the button container */
+            font-family: 'senaru', sans-serif;
+        }
+
+        .button-container button {
+        font-family: 'senaru', sans-serif;
+        border-radius: 20px; /* Adjust this value to increase or decrease roundness */
+        padding: 10px 20px; /* Add padding for a balanced appearance */
+        border: none; /* Optional: remove border for a cleaner look */
+        cursor: pointer;
+        }
+
+        button {
+            padding: 5px 10px; /* Reduce padding for smaller buttons */
+            font-size: 1rem; /* Decrease font size */
+            cursor: pointer;
         }
     </style>
 </head>
-<body>
-    <h1>감사합니다!</h1>
-    <p>당신의 답변은:</p>
-    <p id="user-answer"></p>
 
-    <div>
-        <button onclick="goToResult()">결과 보기</button>
-        <button onclick="goToFinal()">다른 사람들 답변 보기</button>
-        <button>test</button>
+<body id="page-top">
+    <nav class="navbar navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">Therefore, The Reefor</a>
+        </div>
+    </nav>
+
+    <h3 class="pretendard-font mb-6">스스로에게 남기는 응원의 한 마디입니다 :)</h3>
+    <p id="user-answer0"></p>
+    <p id="user-answer4"></p>
+
+    <div class="button-container">
+        <button onclick="goToResult()">한 마디와 함께 Selfie 촬영하기</button>
+        <button onclick="goToResult()">다른 사람의 한 마디 보러 가기</button>
     </div>
 
     <script>
-        // Retrieve the q4-answer from localStorage and display it
-        const q4Answer = localStorage.getItem('q4-answer');
-        document.getElementById('user-answer').textContent = q4Answer ? q4Answer : '답변이 없습니다.';
+        const q0Answer = localStorage.getItem('q0answer');
+        const q4Answer = localStorage.getItem('q4answer');
+
+        document.getElementById('user-answer0').textContent = q0Answer ? q0Answer + "님," : '답변이 없습니다.';
+        document.getElementById('user-answer4').textContent = q4Answer ? q4Answer : '답변이 없습니다.';
 
         function goToResult() {
-            window.location.href = 'result.html';
-        }
-
-        function goToFinal() {
             window.location.href = 'resulttest.html';
         }
     </script>
