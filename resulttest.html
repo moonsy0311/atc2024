@@ -168,7 +168,7 @@
             const viewportHeight = window.innerHeight - headerHeight;
             const viewportWidth = window.innerWidth;
 
-            const topPosition = Math.random() * (viewportHeight + 280);  // 원의 높이만큼 빼주기
+            const topPosition = Math.random() * (viewportHeight);  // 원의 높이만큼 빼주기
             const leftPosition = Math.random() * (viewportWidth - 100); // 원의 너비만큼 빼주기
 
             circle.style.top = topPosition + 'px';
@@ -177,7 +177,7 @@
 
             circle.addEventListener('click', () => {
                 showData(answer);
-            });
+            })
 
             container.appendChild(circle);
         }
