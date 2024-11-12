@@ -90,6 +90,7 @@ section {
   display: flex;
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
+  height: 60px;
 }
 
 .navbar > .container {
