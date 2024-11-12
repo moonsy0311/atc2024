@@ -1,49 +1,107 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Results - The Reefor</title>
-</head>
-<body>
-    <h1>제출된 답변</h1>
-    <div id="results"></div>
+    <title>The Reefor - ATC 2024</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'pretendard', sans-serif;
+        }
 
-    <button onclick="goToSubmitPage()">답변 작성하기</button>
-    <button onclick="clearStorage()">모든 답변 삭제</button>
+        .container {
+            margin-top: 50px;
+        }
+
+        .answer-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .answer-card h3 {
+            color: #344259;
+        }
+
+        .answer-card p {
+            color: #666;
+        }
+
+        .answer-card .email {
+            color: #344259;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #344259;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center">결과 보기</h1>
+
+        <div id="user-result">
+            <!-- 사용자 결과가 여기 표시됩니다. -->
+        </div>
+    </div>
+
+    <footer>
+        <p>by Poboogi | Contact: 이나영(amoureuxjoo@naver.com) / 문서영(@naver.com)</p>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const allAnswers = JSON.parse(localStorage.getItem('allAnswers')) || [];
-            const resultsDiv = document.getElementById('results');
+        function displayUserResult() {
+            const userAnswers = JSON.parse(localStorage.getItem('allAnswers')) || [];
 
-            if (allAnswers.length === 0) {
-                resultsDiv.innerHTML = "<p>제출된 답변이 없습니다.</p>";
+            if (userAnswers.length === 0) {
+                document.getElementById('user-result').innerHTML = '<p>아직 답변이 없습니다.</p>';
                 return;
             }
 
-            allAnswers.forEach((answer, index) => {
-                resultsDiv.innerHTML += `
-                    <h2>답변 ${index + 1}</h2>
-                    <p>닉네임: ${answer.nickname}</p>
-                    <p>Q1: ${answer.answer1}</p>
-                    <p>Q2: ${answer.answer2}</p>
-                    <p>Q3: ${answer.answer3}</p>
-                    <p>Q4: ${answer.answer4}</p>
-                    <p>이메일: ${answer.email}</p>
-                    <hr>
+            const userResult = document.getElementById('user-result');
+            userAnswers.forEach((answer, index) => {
+                const resultCard = document.createElement('div');
+                resultCard.classList.add('answer-card');
+
+                // 사용자 답변을 안전하게 표시
+                resultCard.innerHTML = `
+                    <h3>사용자 ${index + 1}의 결과</h3>
+                    <p><strong>닉네임:</strong> ${answer.nameInput || '없음'}</p>
+                    <p><strong>Q1:</strong> ${answer.answer1 || '답변 없음'}</p>
+                    <p><strong>Q2:</strong> ${answer.answer2 || '답변 없음'}</p>
+                    <p><strong>Q3:</strong> ${answer.answer3 || '답변 없음'}</p>
+                    <p><strong>Q4:</strong> ${answer.answer4 || '답변 없음'}</p>
+                    <p><strong>이메일:</strong> <span class="email">${answer.email || '없음'}</span></p>
                 `;
+
+                userResult.appendChild(resultCard);
             });
-        });
-
-        function clearStorage() {
-            localStorage.removeItem('allAnswers');
-            document.getElementById('results').innerHTML = "<p>모든 답변이 삭제되었습니다.</p>";
         }
 
-        function goToSubmitPage() {
-            window.location.href = 'index.html'; // 답변 작성 페이지로 이동
-        }
+        // 페이지 로드 시 결과를 표시
+        displayUserResult();
     </script>
+
 </body>
+
 </html>
