@@ -150,6 +150,8 @@
                 alert("입력란을 채워주세요.");
                 return false;
             }
+
+            localStorage.setItem('q1answer', answer1);
                 
             // #q2 섹션으로 스크롤 이동
             document.getElementById("q2").scrollIntoView({ behavior: 'smooth' });
@@ -183,6 +185,8 @@
                 alert("입력란을 채워주세요.");
                 return false;
             }
+
+            localStorage.setItem('q2answer', answer2);
                 
             // #q3 섹션으로 스크롤 이동
             document.getElementById("q3").scrollIntoView({ behavior: 'smooth' });
@@ -216,6 +220,8 @@ Q
                 alert("입력란을 채워주세요.");
                 return false;
             }
+
+            localStorage.setItem('q3answer', answer3);
                 
             // #q4 섹션으로 스크롤 이동
             document.getElementById("q4").scrollIntoView({ behavior: 'smooth' });
@@ -279,15 +285,39 @@ Q
         function checkQuestion5Input(event) {
             event.preventDefault(); // 기본 제출 방지
             const email = document.getElementById("input5").value;
-
+    
             if (email.trim() === "") {
                 alert("입력란을 채워주세요.");
                 return false;
             }
-                
+    
+            // 기존 답변에 추가할 이메일 저장
+            localStorage.setItem('q5answer', email);
+    
+            // 기존의 답변들을 불러오고 새로운 답변을 추가합니다.
+            const answers = {
+                nameInput: localStorage.getItem('q0answer'), // 닉네임 설정에서 저장된 값 가져오기
+                answer1: localStorage.getItem('q1answer'), // Q1 답변
+                answer2: localStorage.getItem('q2answer'), // Q2 답변
+                answer3: localStorage.getItem('q3answer'), // Q3 답변
+                answer4: localStorage.getItem('q4answer'), // Q4 답변
+                email: email // 이메일 필드는 input5에서 가져온 값을 사용
+            };
+    
+            // 기존의 답변들을 저장
+            let allAnswers = JSON.parse(localStorage.getItem("allAnswers")) || [];
+            allAnswers.push(answers);
+    
+            // 다시 localStorage에 저장
+            localStorage.setItem("allAnswers", JSON.stringify(allAnswers));
+    
+            // 저장 후 확인 메시지
+            alert("답변이 저장되었습니다!");
+    
+            // 다른 페이지로 리디렉션
             window.location.href = "mention.html";
         }
-    </script>
+    </script>    
         
     <!-- Footer-->
     <footer class="py-5 bg-dark">
@@ -295,29 +325,5 @@ Q
             <p class="m-0 text-center text-white">by Poboogi <br>Contact: 이나영(amoureuxjoo@naver.com) / 문서영 (@naver.com)</p>
         </div>
     </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-
-    <script>
-    function submitForm() {
-
-        const answers = {
-            nameInput,
-            answer1,
-            answer2,
-            answer3,
-            answer4,
-            email
-        };
-
-        let allAnswers = JSON.parse(localStorage.getItem('allAnswers')) || [];
-        allAnswers.push(answers);
-        localStorage.setItem('allAnswers', JSON.stringify(allAnswers));
-        localStorage.setItem('q4-answer', answer4);
-
-        window.location.href = 'mention.html';
-    }
-    </script>
+    
 </html>
