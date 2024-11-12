@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사진을 찍어보세요!</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        @font-face {
+            font-family: 'pixel';
+            src: url(font/neodgm.ttf) format('truetype');
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* 세로 중앙 정렬 */
+            background-color: black;
+            color: white;
+            font-family: 'pixel';
+            height: 100vh; /* 화면 전체 높이 사용 */
+            margin: 0;
+        }
+
+        h1 {
+            font-family: 'pixel';
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+
+        .camera-upper {
+            width: 600px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            position: relative;
+            top: 20%;
+            transform: translateY(-100%);
+            z-index: -2;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .color-buttons {
+            display: flex;
+            position: relative;
+            gap: 10px; /* 버튼 간 간격 설정 */
+            margin-left: 13px;
+            margin-top: 7px;
+        }
+
+        .color-button {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+
+        .red-button {
+            background-color: red;
+        }
+
+        .yellow-button {
+            background-color: yellow;
+        }
+
+        .green-button {
+            background-color: green;
+        }
+
+        .camera-title {
+            font-family: 'pixel', sans-serif;
+            font-size: 1.5rem;
+            color: black;
+            margin-bottom: 5px; /* 버튼과의 간격 조정 */
+            text-align: center;
+        }
+
+        .camera-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #444;
+        }
+
+        video, canvas {
+            width: 600px;
+            height: 450px;
+            /* border-radius: 10px; */
+        }
+
+        .button-container {
+            margin-top: 15px;
+        }
+
+        button {
+            font-family: 'senaru', sans-serif;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            margin: 0 10px;
+        }
+
+        button:hover {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="camera-upper">
+        <!--<span class="camera-title">The Reefor</span>-->
+        <div class="color-buttons">
+            <div class="color-button red-button"></div>
+            <div class="color-button yellow-button"></div>
+            <div class="color-button green-button"></div>
+        </div>
+    </div>    
+
+    <div class="camera-container">
+        <video id="video" autoplay></video>
+        <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+
+    <div class="camera-bottom"></div>
+
+    <div class="button-container">
+        <button id="captureBtn">Shoot!</button>
+        <button id="saveBtn" style="display: none;">저장하기</button>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureBtn = document.getElementById('captureBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const context = canvas.getContext('2d');
+
+        // Access the camera and start video stream
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (error) {
+                console.error("Camera access denied:", error);
+                alert("카메라 접근을 허용해주세요.");
+            }
+        }
+
+        // Capture the current video frame
+        captureBtn.addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            video.style.display = 'none';
+            canvas.style.display = 'block';
+            captureBtn.style.display = 'none';
+            saveBtn.style.display = 'inline-block';
+        });
+
+        // Save the captured image
+        saveBtn.addEventListener('click', () => {
+            const image = canvas.toDataURL("image/png");
+            const link = document.createElement('a');
+            link.href = image;
+            link.download = 'selfie.png';
+            link.click();
+            alert("Finder에서 사진을 확인한 후, Airdrop으로 저장해보세요.");
+        });
+
+        // Initialize camera on page load
+        window.addEventListener('load', startCamera);
+    </script>
+</body>
+</html>
