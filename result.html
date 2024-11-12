@@ -65,6 +65,9 @@
         </div>
     </div>
 
+    <button onclick="goToSubmitPage()">답변 작성하기</button>
+    <button onclick="clearStorage()">모든 답변 삭제</button>
+
     <footer>
         <p>by Poboogi | Contact: 이나영(amoureuxjoo@naver.com) / 문서영(@naver.com)</p>
     </footer>
@@ -96,6 +99,15 @@
 
                 userResult.appendChild(resultCard);
             });
+        }
+
+        function clearStorage() {
+            ocalStorage.removeItem('allAnswers');
+            document.getElementById('results').innerHTML = "<p>모든 답변이 삭제되었습니다.</p>";
+        }
+
+        function goToSubmitPage() {
+            window.location.href = 'index.html'; // 답변 작성 페이지로 이동
         }
 
         // 페이지 로드 시 결과를 표시
