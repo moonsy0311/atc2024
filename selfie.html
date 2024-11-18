@@ -95,10 +95,10 @@
 
         .camera-overlay {
             position: absolute;
-            width: 80%;
+            width: 60%;
             height: auto;
-            top: -35%;
-            left: 110%;
+            top: -11%;
+            left: 85%;
             transform: translateX(-50%);
             z-index: 3;
         }
@@ -194,7 +194,7 @@
         <!-- malpoong.png 이미지를 오버레이로 추가 -->
         <div class="camera-overlay">
             <img src="assets/malpoong.png" alt="Overlay Image" style="width: 80%; height: auto;">
-            <p id="user-answer4" style="position: absolute; top: 42%; left: 39%; transform: translateX(-50%); font-family: 'pixel'; font-size: 1.7rem; color: black; text-align: center;"></p>
+            <p id="user-answer4" style="position: absolute; top: 40%; left: 39%; transform: translateX(-50%); font-family: 'pixel'; font-size: 1.7rem; color: black; text-align: center;"></p>
         </div>
     </div>
 
@@ -206,6 +206,10 @@
             <button onclick="goToResult()" style="font-size: 1rem;">다른 사람의 한 마디 보기</button>
         </div>
     </div>
+
+    <!-- html2canvas 라이브러리 추가 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
     
     <script>
         const video = document.getElementById('video');
@@ -247,6 +251,7 @@
             link.click();
             alert("Finder에서 사진을 확인한 후, Airdrop으로 저장해보세요.");
         });
+
         // Initialize camera on page load
         window.addEventListener('load', startCamera);
 
