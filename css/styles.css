@@ -301,6 +301,7 @@ input {
 
 #input1{
   border-bottom-color: #ffffff;
+  color: #ffffff;
 }
 
 #input2{
@@ -309,6 +310,7 @@ input {
 
 #input3{
   border-bottom-color: #ffffff;
+  color: #ffffff;
 }
 
 #input4{
@@ -317,6 +319,7 @@ input {
 
 #input5{
   border-bottom-color: #ffffff;
+  color: #ffffff;
 }
 
 /* 입력창 크기와 정렬 */
