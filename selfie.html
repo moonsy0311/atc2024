@@ -11,15 +11,20 @@
             src: url(font/neodgm.ttf) format('truetype');
         }
 
+        @font-face {
+            font-family: 'senaru';
+            src: url('font/senaru.otf') format('opentype');
+        }
+
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* 세로 중앙 정렬 */
             background-color: black;
             color: white;
             font-family: 'pixel';
-            height: 100vh;
+            height: 100vh; /* 화면 전체 높이 사용 */
             margin: 0;
         }
 
@@ -44,7 +49,7 @@
         .color-buttons {
             display: flex;
             position: relative;
-            gap: 10px;
+            gap: 10px; /* 버튼 간 간격 설정 */
             margin-left: 13px;
             margin-top: 7px;
         }
@@ -73,9 +78,10 @@
         background-color: rgb(183, 183, 183); /* 배경색 설정 */
         border-radius: 20px;
         position: relative;
-        top: 120px;
-        z-index: -2;
+        top: -20px;
+        z-index: 1;
         box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        clip-path: inset(25% 0 0 0); /* 상단 50% 자르기 */
         }
 
         .camera-container {
@@ -87,35 +93,57 @@
             background-color: #444;
         }
 
-        video, canvas {
-            width: 600px;
-            height: 300px;
-        }
-
         .camera-overlay {
             position: absolute;
-            top: -150px;
-            left: 400px;
-            width: 450px;
+            width: 80%;
             height: auto;
-            z-index: 2; /* 오버레이를 비디오 위에 표시 */
-            pointer-events: none; /* 마우스 이벤트 차단 */
+            top: -35%;
+            left: 110%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        #user-answer4 {
+            position: absolute;
+            top: 50%;
+            left: 39%;
+            transform: translateX(-50%);
+            z-index: 4;  /* 더 높은 값으로 텍스트를 이미지 위로 */
+            font-family: 'pixel';
+            font-size: 1.7rem;
+            color: white;
+            text-align: center;
+        }
+
+        video, canvas {
+            width: 600px;
+            height: 450px;
         }
 
         .button-container {
-            margin-top: 15px;
+            display: flex;
+            justify-content: space-between; /* 버튼들을 양옆으로 배치 */
+            width: 80%; /* 버튼들이 배치될 공간의 너비 */
+            position: absolute;
+            top: 38%;
+            left: 9%;
         }
 
         button {
             font-family: 'senaru', sans-serif;
             font-size: 1rem;
             padding: 10px 20px;
-            border: none;
+            border: 1px solid rgb(46, 46, 46);
             border-radius: 10px;
             cursor: pointer;
-            background-color: #444;
-            color: white;
+            background-color: transparent;
+            color: rgb(46, 46, 46);
             margin: 0 10px;
+            white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+        }
+
+        button:hover {
+            background-color: rgb(116, 116, 116);
         }
 
         .shoot-button {
@@ -139,6 +167,7 @@
             border: none;
             cursor: pointer;
         }
+
     </style>
 </head>
 <body>
@@ -147,15 +176,17 @@
             <a class="navbar-brand" href="#page-top" style="font-family:pixel;">Therefore, The Reefor</a>
         </div>
     </nav>
-    
+
     <div class="camera-upper">
+        <!--<span class="camera-title">The Reefor</span>-->
         <div class="color-buttons">
             <div class="color-button red-button"></div>
             <div class="color-button yellow-button"></div>
             <div class="color-button green-button"></div>
+            
         </div>
-    </div>    
-
+    </div> 
+      
     <div class="camera-container">
         <video id="video" autoplay></video>
         <canvas id="canvas" style="display: none;"></canvas>
@@ -163,27 +194,26 @@
         <!-- malpoong.png 이미지를 오버레이로 추가 -->
         <div class="camera-overlay">
             <img src="assets/malpoong.png" alt="Overlay Image" style="width: 80%; height: auto;">
-            <!-- 로컬 스토리지에서 4번째 질문의 답을 불러와서 표시 -->
-            <p id="user-answer4" style="position: absolute; top: 39%; left: 39%; transform: translateX(-50%); font-family: 'pixel'; font-size: 1.7rem; color: black; text-align: center;"></p>
+            <p id="user-answer4" style="position: absolute; top: 42%; left: 39%; transform: translateX(-50%); font-family: 'pixel'; font-size: 1.7rem; color: black; text-align: center;"></p>
         </div>
+    </div>
 
-        <div class="camera-lower"></div>
-            <div class="button-container" style="display: flex; justify-content: center; gap: 10px;">
-                <button onclick="goToMention()" style="background: none; border: none; color: white; font-size: 1.5rem; padding: 5px 10px;"><<</button>
-                <button id="captureBtn" class="shoot-button"></button>
-                <button id="saveBtn" class="save-button" style="display: none;"></button>
-                <button onclick="goToResult()" style="background: none; border: none; color: white; font-size: 1.5rem; padding: 5px 10px;">>></button>
-            </div>
+    <div class="camera-lower">
+        <div class="button-container">
+            <button onclick="goToMention()" style="font-size: 1rem;">이전 페이지로</button>
+            <button id="captureBtn" style="font-size: 1rem;">Shoot!</button>
+            <button id="saveBtn" style="display: none;">Save</button>
+            <button onclick="goToResult()" style="font-size: 1rem;">다른 사람의 한 마디 보기</button>
         </div>
-    </div>    
-
+    </div>
+    
     <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const captureBtn = document.getElementById('captureBtn');
         const saveBtn = document.getElementById('saveBtn');
         const context = canvas.getContext('2d');
-        
+
         // 로컬 스토리지에서 4번째 질문에 대한 답을 불러오기
         const q4Answer = localStorage.getItem('q4answer');
         document.getElementById('user-answer4').textContent = q4Answer ? q4Answer : '답변이 없습니다.';
@@ -198,7 +228,6 @@
                 alert("카메라 접근을 허용해주세요.");
             }
         }
-
         // Capture the current video frame
         captureBtn.addEventListener('click', () => {
             canvas.width = video.videoWidth;
@@ -209,7 +238,6 @@
             captureBtn.style.display = 'none';
             saveBtn.style.display = 'inline-block';
         });
-
         // Save the captured image
         saveBtn.addEventListener('click', () => {
             const image = canvas.toDataURL("image/png");
@@ -219,7 +247,6 @@
             link.click();
             alert("Finder에서 사진을 확인한 후, Airdrop으로 저장해보세요.");
         });
-
         // Initialize camera on page load
         window.addEventListener('load', startCamera);
 
@@ -230,7 +257,7 @@
         function goToResult() {
             window.location.href = 'resulttest.html';
         }
-
     </script>
 </body>
 </html>
+
