@@ -426,3 +426,12 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
+
+#footer{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a2333;
+  height: 90px;
+}
