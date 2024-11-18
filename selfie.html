@@ -15,11 +15,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* 세로 중앙 정렬 */
+            justify-content: center;
             background-color: black;
             color: white;
             font-family: 'pixel';
-            height: 100vh; /* 화면 전체 높이 사용 */
+            height: 100vh;
             margin: 0;
         }
 
@@ -44,7 +44,7 @@
         .color-buttons {
             display: flex;
             position: relative;
-            gap: 10px; /* 버튼 간 간격 설정 */
+            gap: 10px;
             margin-left: 13px;
             margin-top: 7px;
         }
@@ -67,12 +67,15 @@
             background-color: green;
         }
 
-        .camera-title {
-            font-family: 'pixel', sans-serif;
-            font-size: 1.5rem;
-            color: black;
-            margin-bottom: 5px; /* 버튼과의 간격 조정 */
-            text-align: center;
+        .camera-lower {
+        width: 600px;
+        height: 80px; /* 원하는 높이 설정 */
+        background-color: rgb(183, 183, 183); /* 배경색 설정 */
+        border-radius: 20px;
+        position: relative;
+        top: 120px;
+        z-index: -2;
+        box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
         }
 
         .camera-container {
@@ -86,8 +89,17 @@
 
         video, canvas {
             width: 600px;
-            height: 450px;
-            /* border-radius: 10px; */
+            height: 300px;
+        }
+
+        .camera-overlay {
+            position: absolute;
+            top: -150px;
+            left: 400px;
+            width: 450px;
+            height: auto;
+            z-index: 2; /* 오버레이를 비디오 위에 표시 */
+            pointer-events: none; /* 마우스 이벤트 차단 */
         }
 
         .button-container {
@@ -106,14 +118,37 @@
             margin: 0 10px;
         }
 
-        button:hover {
-            background-color: white;
+        .shoot-button {
+        width: 50px; /* 원하는 크기 설정 */
+        height: 50px; /* 원하는 크기 설정 */
+        background-image: url('assets/shoot-button.png'); /* 이미지 경로 설정 */
+        background-size: cover; /* 이미지 크기를 버튼 크기에 맞추기 */
+        background-position: center; /* 이미지 가운데 정렬 */
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        }
+
+        .save-button {
+            width: 50px; /* 원하는 크기 설정 */
+            height: 50px; /* 원하는 크기 설정 */
+            background-image: url('assets/save-button.png'); /* 이미지 경로 설정 */
+            background-size: cover; /* 이미지 크기를 버튼 크기에 맞추기 */
+            background-position: center; /* 이미지 가운데 정렬 */
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">Therefore, The Reefor</a>
+        </div>
+    </nav>
+    
     <div class="camera-upper">
-        <!--<span class="camera-title">The Reefor</span>-->
         <div class="color-buttons">
             <div class="color-button red-button"></div>
             <div class="color-button yellow-button"></div>
@@ -124,14 +159,23 @@
     <div class="camera-container">
         <video id="video" autoplay></video>
         <canvas id="canvas" style="display: none;"></canvas>
-    </div>
 
-    <div class="camera-bottom"></div>
+        <!-- malpoong.png 이미지를 오버레이로 추가 -->
+        <div class="camera-overlay">
+            <img src="assets/malpoong.png" alt="Overlay Image" style="width: 80%; height: auto;">
+            <!-- 로컬 스토리지에서 4번째 질문의 답을 불러와서 표시 -->
+            <p id="user-answer4" style="position: absolute; top: 39%; left: 39%; transform: translateX(-50%); font-family: 'pixel'; font-size: 1.7rem; color: black; text-align: center;"></p>
+        </div>
 
-    <div class="button-container">
-        <button id="captureBtn">Shoot!</button>
-        <button id="saveBtn" style="display: none;">저장하기</button>
-    </div>
+        <div class="camera-lower"></div>
+            <div class="button-container" style="display: flex; justify-content: center; gap: 10px;">
+                <button onclick="goToMention()" style="background: none; border: none; color: white; font-size: 1.5rem; padding: 5px 10px;"><<</button>
+                <button id="captureBtn" class="shoot-button"></button>
+                <button id="saveBtn" class="save-button" style="display: none;"></button>
+                <button onclick="goToResult()" style="background: none; border: none; color: white; font-size: 1.5rem; padding: 5px 10px;">>></button>
+            </div>
+        </div>
+    </div>    
 
     <script>
         const video = document.getElementById('video');
@@ -139,6 +183,10 @@
         const captureBtn = document.getElementById('captureBtn');
         const saveBtn = document.getElementById('saveBtn');
         const context = canvas.getContext('2d');
+        
+        // 로컬 스토리지에서 4번째 질문에 대한 답을 불러오기
+        const q4Answer = localStorage.getItem('q4answer');
+        document.getElementById('user-answer4').textContent = q4Answer ? q4Answer : '답변이 없습니다.';
 
         // Access the camera and start video stream
         async function startCamera() {
@@ -174,6 +222,15 @@
 
         // Initialize camera on page load
         window.addEventListener('load', startCamera);
+
+        function goToMention() {
+            window.location.href = 'mention.html';
+        }
+
+        function goToResult() {
+            window.location.href = 'resulttest.html';
+        }
+
     </script>
 </body>
 </html>
