@@ -289,6 +289,34 @@ h6, .h6 {
 
 input {
   text-align: center; /* 텍스트를 중앙 정렬 */
+  background: transparent;
+  height: 30px;
+  border-color: transparent;
+  width: 400px;
+}
+
+#name{
+  border-bottom-color: #000000;
+}
+
+#input1{
+  border-bottom-color: #ffffff;
+}
+
+#input2{
+  border-bottom-color: #000000
+}
+
+#input3{
+  border-bottom-color: #ffffff;
+}
+
+#input4{
+  border-bottom-color: #000000;
+}
+
+#input5{
+  border-bottom-color: #ffffff;
 }
 
 /* 입력창 크기와 정렬 */
