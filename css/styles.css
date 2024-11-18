@@ -200,7 +200,7 @@ h3.pixel-font {
   text-decoration: none; /* 밑줄 제거 */
   border: none; /* 기본 테두리 제거 */
   padding: 2rem 2rem; /* 버튼 패딩 조정 (위 아래 1rem, 좌우 2rem) */
-  font-size: 1.5rem; /* 폰트 크기 조정 (필요에 따라 조정 가능) */
+  font-size: 2.5rem; /* 폰트 크기 조정 (필요에 따라 조정 가능) */
 }
 
 .btn-light:hover, .btn-light:focus {
