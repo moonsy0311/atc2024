@@ -97,7 +97,7 @@
                         <h2 class="pixel-font mb-5">닉네임을 설정해주세요!</h2>
                         <p class="pretendard-font mb-5">자신이 기록되길 바라는 이름으로 무엇이든 작성해 주세요. <br>이 닉네임은 타 관람자들에게 보여질 수 있습니다. </p>
                         <input id="name" name="my-name" type="text" class="pretendard-font" required />
-                        <button class="btn next-btn" style="margin-top: 15px;">
+                        <button class="btn next-btn" style="margin-top: 15px;" id="q0btn">
                             <img src="assets/icons8-next.png" alt="Next" class="arrow-icon" style="filter: brightness(0) invert(0);">
                         </button>                                               
                     </form>
@@ -133,6 +133,13 @@
             const targetElement = document.getElementById('q0');  // 이동할 대상 요소
             smoothScrollTo(targetElement);
         });
+
+        document.getElementById('q0btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q1');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
         
         function checkNicknameInput(event) {
             event.preventDefault(); // 기본 제출 방지
@@ -146,11 +153,7 @@
             localStorage.setItem('q0answer', nameInput);
                 
             // #q1 섹션으로 스크롤 이동
-            document.querySelector('.next-btn').addEventListener('click', function(event) {
-                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-                const targetElement = document.getElementById('q1');  // 이동할 대상 요소
-                smoothScrollTo(targetElement);
-            });
+            document.getElementById("q1").scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
@@ -173,6 +176,15 @@
     </section>
 
     <script>
+
+
+        document.getElementById('q1btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q2');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
+
         function checkQuestion1Input(event) {
             event.preventDefault(); // 기본 제출 방지
             const answer1 = document.getElementById("input1").value;
@@ -185,11 +197,7 @@
             localStorage.setItem('q1answer', answer1);
                 
             // #q2 섹션으로 스크롤 이동
-            document.querySelector('q1btn').addEventListener('click', function(event) {
-                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-                const targetElement = document.getElementById('q2');  // 이동할 대상 요소
-                smoothScrollTo(targetElement);
-            });
+            document.getElementById("q2").scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
@@ -212,6 +220,15 @@
     </section>
 
     <script>
+
+        document.getElementById('q2btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q3');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
+
+
         function checkQuestion2Input(event) {
             event.preventDefault(); // 기본 제출 방지
             const answer2 = document.getElementById("input2").value;
@@ -224,12 +241,7 @@
             localStorage.setItem('q2answer', answer2);
                 
             // #q3 섹션으로 스크롤 이동
-            document.querySelector('q2btn').addEventListener('click', function(event) {
-                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-                const targetElement = document.getElementById('q3');  // 이동할 대상 요소
-                smoothScrollTo(targetElement);
-            });
-
+            document.getElementById("q3").scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
@@ -242,7 +254,7 @@ Q
                     <form onsubmit="checkQuestion3Input(event)">
                         <h2 class="question-text-white">Q3. 앞으로 하고 싶은 도전은 무엇인가요? <br>그 도전까지는 얼마만큼의 시간이 걸릴까요?</h2>
                         <input id="input3" name="my-input3" type="text" class="pretendard-font" required />
-                        <button class="btn next-btn" style="margin-top: 50px;" id="q3btn">
+                        <button class="btn next-btn" style="margin-top: 50px;" id-="q3btn">
                             <img src="assets/icons8-next.png" alt="Next" class="arrow-icon">
                         </button>                                               
                     </form>
@@ -252,6 +264,15 @@ Q
     </section>
 
     <script>
+        
+        document.getElementById('q3btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q4');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
+
+
         function checkQuestion3Input(event) {
             event.preventDefault(); // 기본 제출 방지
             const answer3 = document.getElementById("input3").value;
@@ -264,12 +285,7 @@ Q
             localStorage.setItem('q3answer', answer3);
                 
             // #q4 섹션으로 스크롤 이동
-            document.querySelector('q3btn').addEventListener('click', function(event) {
-                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-                const targetElement = document.getElementById('q4');  // 이동할 대상 요소
-                smoothScrollTo(targetElement);
-            });
-
+            document.getElementById("q4").scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
@@ -291,7 +307,16 @@ Q
         </div>
     </section>
 
+
     <script>
+
+        document.getElementById('q4btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q5');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
+
         function checkQuestion4Input(event) {
             event.preventDefault(); // 기본 제출 방지
             const answer4 = document.getElementById("input4").value;
@@ -304,12 +329,7 @@ Q
             localStorage.setItem('q4answer', answer4);
                 
             // #q5 섹션으로 스크롤 이동
-            document.querySelector('q4btn').addEventListener('click', function(event) {
-                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-                const targetElement = document.getElementById('q5');  // 이동할 대상 요소
-                smoothScrollTo(targetElement);
-            });
-
+            document.getElementById("q5").scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 
