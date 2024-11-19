@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사진을 찍어보세요!</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>당신에게 남기는 한 마디</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link href="css/styles.css" rel="stylesheet" />
     <style>
         @font-face {
@@ -12,272 +13,104 @@
         }
 
         @font-face {
+            font-family: 'pretendard';
+            src: url('font/pretendard.ttf') format('truetype');
+        }
+
+        @font-face {
             font-family: 'senaru';
             src: url('font/senaru.otf') format('opentype');
         }
 
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center; /* 세로 중앙 정렬 */
+            font-family: Arial, sans-serif;
             background-color: black;
             color: white;
-            font-family: 'pixel';
-            height: 100vh; /* 화면 전체 높이 사용 */
             margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
 
         h1 {
             font-family: 'pixel';
-            font-size: 2rem;
-            margin-top: 20px;
+            font-size: 3rem;
+            margin: 0;
         }
 
-        .camera-upper {
-            width: 800px;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 20px;
-            position: relative;
-            top: 4%; /* 이 값으로 위치를 조정 */
-            z-index: -2;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .color-buttons {
-            display: flex;
-            position: relative;
-            gap: 10px; /* 버튼 간 간격 설정 */
-            margin-left: 13px;
-            margin-top: 7px;
-        }
-
-        .color-button {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-        }
-
-        .red-button {
-            background-color: red;
-        }
-
-        .yellow-button {
-            background-color: yellow;
-        }
-
-        .green-button {
-            background-color: green;
-        }
-
-        .camera-lower {
-        width: 800px;
-        height: 80px; /* 원하는 높이 설정 */
-        background-color: rgb(183, 183, 183); /* 배경색 설정 */
-        border-radius: 20px;
-        position: relative;
-        top: -20px;
-        z-index: 1;
-        box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-        clip-path: inset(25% 0 0 0); /* 상단 50% 자르기 */
-        }
-
-        .camera-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background-color: #444;
-            width: 800px; /* 기존보다 넓게 */
-            height: 600px; /* 기존보다 높게 */
-        }
-
-        .camera-overlay {
-            position: absolute;
-            width: 70%;
-            height: auto;
-            top: -30%;
-            left: 110%;
-            transform: translateX(-50%);
-            z-index: 3;
-        }
-
-        #user-answer4 {
-            position: absolute;
-            top: 50%;
-            left: 39%;
-            transform: translateX(-50%);
-            z-index: 4;  /* 더 높은 값으로 텍스트를 이미지 위로 */
+        p {
             font-family: 'pixel';
-            font-size: 1.7rem;
-            color: white;
-            text-align: center;
+            font-size: 2rem;
+            margin: 0;
         }
 
-        video, canvas {
-            width: 800px;
-            height: 600px;
+        h3.pixel-font {
+            font-family: 'pixel';
+            font-size: 1.5rem;
+            margin: 20px 0;
         }
 
         .button-container {
-            display: flex;
-            justify-content: space-between; /* 버튼들을 양옆으로 배치 */
-            width: 80%; /* 버튼들이 배치될 공간의 너비 */
-            position: absolute;
-            top: 38%;
-            left: 42%;
-        }
-
-        button {
+            display: flex; /* Use flexbox to arrange buttons horizontally */
+            gap: 10%; /* Space between buttons */
+            margin-top: 200px; /* Margin above the button container */
             font-family: 'senaru', sans-serif;
-            font-size: 1rem;
-            padding: 10px 20px;
-            border: 1px solid rgb(46, 46, 46);
-            border-radius: 10px;
-            cursor: pointer;
-            background-color: transparent;
-            color: rgb(46, 46, 46);
-            margin: 0 10px;
-            white-space: nowrap; /* 텍스트 줄바꿈 방지 */
         }
 
-        button:hover {
-            background-color: rgb(116, 116, 116);
-        }
-
-        .shoot-button {
-        width: 50px; /* 원하는 크기 설정 */
-        height: 50px; /* 원하는 크기 설정 */
-        background-image: url('assets/shoot-button.png'); /* 이미지 경로 설정 */
-        background-size: cover; /* 이미지 크기를 버튼 크기에 맞추기 */
-        background-position: center; /* 이미지 가운데 정렬 */
-        background-color: transparent;
-        border: none;
+        .button-container button {
+        font-family: 'senaru', sans-serif;
+        border-radius: 20px; /* Adjust this value to increase or decrease roundness */
+        padding: 10px 20px; /* Add padding for a balanced appearance */
+        border: none; /* Optional: remove border for a cleaner look */
         cursor: pointer;
         }
 
-        button:disabled {
-            background-color: gray; /* 비활성화된 버튼의 배경색 */
-            color: white;
-            cursor: not-allowed; /* 마우스 커서 변경 */
-        }
-
-        .message {
-            font-family: 'pixel'; /* 'pixel' 폰트 사용 */
-            font-size: 1rem; /* 글자 크기 설정 */
-            color: white; /* 글자 색상 */
-            text-align: center; /* 텍스트 가운데 정렬 */
-            margin-top: 20px; /* 상단 여백 */
-            position: absolute;
-            bottom: 14%; /* 화면 하단에서 10% 위치 */
-            left: 50%; /* 가로 중앙 정렬 */
-            transform: translateX(-50%); /* 가로 중앙 정렬 */
-        }
-
-        .back-button {
-            font-family: 'pixel';
-            font-size: 1rem;
-            border: none; /* 테두리 제거 */
+        button {
+            padding: 5px 10px; /* Reduce padding for smaller buttons */
+            font-size: 1rem; /* Decrease font size */
             cursor: pointer;
-            background-color: transparent; /* 배경 투명 */
-            color: white; /* 텍스트 색상 */
-            position: absolute;
-            top: 80%;
-            display: block; /* 블록으로 설정해 중앙 정렬 가능 */
-            text-align: center;
-            transition: background-color 0.3s ease, color 0.3s ease; /* 호버 애니메이션 */
         }
-
-        .back-button:hover {
-            background: transparent;
-            color: rgb(255, 255, 155); /* 호버 시 텍스트 색상 검정 */
-        }
-
     </style>
 </head>
 
-<body>
+<body id="page-top">
     <nav class="navbar navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top" style="font-family:pixel;">Therefore, The Reefor</a>
+            <a class="navbar-brand" href="#page-top">Therefore, The Reefor</a>
         </div>
     </nav>
 
-    <div class="camera-upper">
-        <!--<span class="camera-title">The Reefor</span>-->
-        <div class="color-buttons">
-            <div class="color-button red-button"></div>
-            <div class="color-button yellow-button"></div>
-            <div class="color-button green-button"></div>
-            
-        </div>
-    </div> 
-      
-    <div class="camera-container">
-        <video id="video" autoplay></video>
-        <canvas id="canvas" style="display: none;"></canvas>
+    <h3 class="pretendard-font mb-6">스스로에게 남기는 응원의 한 마디입니다 :)</h3>
+    <p id="user-answer0"></p>
+    <p id="user-answer4"></p>
 
-        <!-- malpoong.png 이미지를 오버레이로 추가 -->
-        <div class="camera-overlay">
-            <img src="assets/malpoong.png" alt="Overlay Image" style="width: 80%; height: auto;">
-            <p id="user-answer4" style="position: absolute; top: 40%; left: 39%; transform: translateX(-50%); font-family: 'pixel'; font-size: 1.7rem; color: black; text-align: center;"></p>
-        </div>
+    <div class="button-container">
+        <button onclick="goToSelfie()">한 마디와 함께 Selfie 촬영하기</button>
+        <button onclick="goToResult()">다른 사람의 한 마디 보러 가기</button>
+        <button onclick="goToPage()">답변 페이지</button>
     </div>
 
-    <div class="camera-lower">
-        <div class="button-container">
-            <button id="captureBtn" style="font-size: 1rem;">Shoot!</button>
-        </div>
-    </div>
-
-    <p class="message">휴대폰으로 자신에게 남기는 한 마디와 함께 사진을 찍어보세요!</p>
-    <button class="back-button" onclick="goToMention()">이전 페이지로</button>
-    
     <script>
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const captureBtn = document.getElementById('captureBtn');
-        const context = canvas.getContext('2d');
-
-        // 로컬 스토리지에서 4번째 질문에 대한 답을 불러오기
+        const q0Answer = localStorage.getItem('q0answer');
         const q4Answer = localStorage.getItem('q4answer');
+
+        document.getElementById('user-answer0').textContent = q0Answer ? q0Answer + "님," : '답변이 없습니다.';
         document.getElementById('user-answer4').textContent = q4Answer ? q4Answer : '답변이 없습니다.';
 
-        // Access the camera and start video stream
-        async function startCamera() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                video.srcObject = stream;
-            } catch (error) {
-                console.error("Camera access denied:", error);
-                alert("카메라 접근을 허용해주세요.");
-            }
+        function goToResult() {
+            window.location.href = 'resulttest.html';
         }
 
-        captureBtn.addEventListener('click', () => {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            video.style.display = 'none';
-            canvas.style.display = 'block';
-
-            // Shoot! 버튼 상태 변경
-            captureBtn.disabled = true; // 버튼 비활성화
-            captureBtn.style.backgroundColor = "gray"; // 배경색 회색으로 변경
-        });
-
-
-        // Initialize camera on page load
-        window.addEventListener('load', startCamera);
-
-        function goToMention() {
-            window.location.href = 'mention.html';
+        function goToSelfie() {
+            window.location.href = 'selfie.html';
         }
 
+        function goToPage() {
+            window.location.href = 'result.html';
+        }
     </script>
 </body>
 </html>
-
