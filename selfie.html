@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사진을 찍어보세요!</title>
     <link href="css/styles.css" rel="stylesheet" />
-    <!-- html2canvas 라이브러리 추가 -->
-    <script src="./js/html2canvas.min.js"></script>
     <style>
         @font-face {
             font-family: 'pixel';
@@ -38,7 +36,7 @@
 
         .camera-upper {
             width: 800px;
-            height: 100px;
+            height: -100px;
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 20px;
             position: relative;
@@ -99,10 +97,10 @@
 
         .camera-overlay {
             position: absolute;
-            width: 60%;
+            width: 70%;
             height: auto;
-            top: -11%;
-            left: 85%;
+            top: -30%;
+            left: 110%;
             transform: translateX(-50%);
             z-index: 3;
         }
@@ -130,7 +128,7 @@
             width: 80%; /* 버튼들이 배치될 공간의 너비 */
             position: absolute;
             top: 38%;
-            left: 9%;
+            left: 42%;
         }
 
         button {
@@ -200,9 +198,7 @@
 
     <div class="camera-lower">
         <div class="button-container">
-            <button onclick="goToMention()" style="font-size: 1rem;">이전 페이지로</button>
             <button id="captureBtn" style="font-size: 1rem;">Shoot!</button>
-            <button onclick="goToResult()" style="font-size: 1rem;">다른 사람의 한 마디 보기</button>
         </div>
     </div>
     
@@ -234,7 +230,6 @@
 
             // Shoot! 버튼 상태 변경
             captureBtn.disabled = true; // 버튼 비활성화
-            captureBtn.textContent = "저장된 프레임을 찍어보세요!"; // 텍스트 변경
             captureBtn.style.backgroundColor = "gray"; // 배경색 회색으로 변경
         });
 
@@ -246,9 +241,6 @@
             window.location.href = 'mention.html';
         }
 
-        function goToResult() {
-            window.location.href = 'resulttest.html';
-        }
     </script>
 </body>
 </html>
