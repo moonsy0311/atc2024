@@ -18,6 +18,10 @@
   font-family: 'pretendard', sans-serif; /* Pretendard 폰트 적용 */
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #344259; /* 배경색 */
   margin: 0; /* 기본 여백 */
