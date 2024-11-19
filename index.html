@@ -83,7 +83,7 @@
         <div class="text-center" style="width: 100%; padding: 0;">
             <h1 class="pixel-font mb-5">Welcome to The Reefor!</h1>
             <p class="pretendard-font mb-5">A digital repository about experiences in your life<br>더 리포는 그럼에도 불구하고, 계속해서 도전하는 사람들을 위한 아카이빙 페이지입니다.</p>
-            <a class="btn btn-light mt-5 pixel-font" href="#q0">START!</a>
+            <a class="btn btn-light mt-5 pixel-font" href="#q0" id="startBtn">START!</a>
         </div>
     </header>
 
@@ -107,6 +107,33 @@
     </section>
 
     <script>
+        function smoothScrollTo(targetElement) {
+            const targetPosition = targetElement.offsetTop;
+            const startPosition = document.documentElement.scrollTop || document.body.scrollTop;
+            const distance = targetPosition - startPosition;
+            const duration = 500;  // 애니메이션 지속 시간
+            const step = distance / (duration / 10);  // 한 번에 이동하는 거리
+
+            let currentPosition = startPosition;
+            const interval = setInterval(function() {
+                currentPosition += step;
+                document.documentElement.scrollTop = document.body.scrollTop = currentPosition;
+
+                // 목표 위치에 도달하면 인터벌을 멈춥니다.
+                if (Math.abs(currentPosition - targetPosition) < Math.abs(step)) {
+                    clearInterval(interval);
+                    document.documentElement.scrollTop = document.body.scrollTop = targetPosition;
+                }
+            }, 10); // 10ms마다 이동
+        }
+
+        // "START!" 버튼 클릭 시 부드러운 스크롤로 이동
+        document.getElementById('startBtn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q0');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+        
         function checkNicknameInput(event) {
             event.preventDefault(); // 기본 제출 방지
             const nameInput = document.getElementById("name").value;
