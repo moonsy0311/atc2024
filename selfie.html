@@ -165,6 +165,18 @@
             cursor: not-allowed; /* 마우스 커서 변경 */
         }
 
+        .message {
+            font-family: 'pixel'; /* 'pixel' 폰트 사용 */
+            font-size: 1rem; /* 글자 크기 설정 */
+            color: white; /* 글자 색상 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+            margin-top: 20px; /* 상단 여백 */
+            position: absolute;
+            bottom: 10%; /* 화면 하단에서 10% 위치 */
+            left: 50%; /* 가로 중앙 정렬 */
+            transform: translateX(-50%); /* 가로 중앙 정렬 */
+        }
+
     </style>
 </head>
 
@@ -201,6 +213,8 @@
             <button id="captureBtn" style="font-size: 1rem;">Shoot!</button>
         </div>
     </div>
+
+    <p class="message">자신에게 남기는 한 마디와 함께 사진을 찍어보세요!</p>
     
     <script>
         const video = document.getElementById('video');
