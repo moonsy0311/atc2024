@@ -40,8 +40,7 @@
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 20px;
             position: relative;
-            top: 20%;
-            transform: translateY(-100%);
+            top: 20%; /* 이 값으로 위치를 조정 */
             z-index: -2;
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
         }
@@ -172,7 +171,7 @@
             text-align: center; /* 텍스트 가운데 정렬 */
             margin-top: 20px; /* 상단 여백 */
             position: absolute;
-            bottom: 10%; /* 화면 하단에서 10% 위치 */
+            bottom: 20%; /* 화면 하단에서 10% 위치 */
             left: 50%; /* 가로 중앙 정렬 */
             transform: translateX(-50%); /* 가로 중앙 정렬 */
         }
@@ -214,7 +213,7 @@
         </div>
     </div>
 
-    <p class="message">자신에게 남기는 한 마디와 함께 사진을 찍어보세요!</p>
+    <p class="message">휴대폰으로 자신에게 남기는 한 마디와 함께 사진을 찍어보세요!</p>
     
     <script>
         const video = document.getElementById('video');
