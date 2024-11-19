@@ -146,7 +146,7 @@
             localStorage.setItem('q0answer', nameInput);
                 
             // #q1 섹션으로 스크롤 이동
-            document.querySelector(.next-btn).addEventListener('click', function(event) {
+            document.querySelector('.next-btn').addEventListener('click', function(event) {
                 event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
                 const targetElement = document.getElementById('q1');  // 이동할 대상 요소
                 smoothScrollTo(targetElement);
