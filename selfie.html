@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사진을 찍어보세요!</title>
     <link href="css/styles.css" rel="stylesheet" />
+    <!-- html2canvas 라이브러리 추가 -->
+    <script src="./js/html2canvas.min.js"></script>
     <style>
         @font-face {
             font-family: 'pixel';
@@ -35,7 +37,7 @@
         }
 
         .camera-upper {
-            width: 600px;
+            width: 800px;
             height: 100px;
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 20px;
@@ -73,7 +75,7 @@
         }
 
         .camera-lower {
-        width: 600px;
+        width: 800px;
         height: 80px; /* 원하는 높이 설정 */
         background-color: rgb(183, 183, 183); /* 배경색 설정 */
         border-radius: 20px;
@@ -91,6 +93,8 @@
             justify-content: center;
             position: relative;
             background-color: #444;
+            width: 800px; /* 기존보다 넓게 */
+            height: 600px; /* 기존보다 높게 */
         }
 
         .camera-overlay {
@@ -116,8 +120,8 @@
         }
 
         video, canvas {
-            width: 600px;
-            height: 450px;
+            width: 800px;
+            height: 600px;
         }
 
         .button-container {
@@ -157,19 +161,15 @@
         cursor: pointer;
         }
 
-        .save-button {
-            width: 50px; /* 원하는 크기 설정 */
-            height: 50px; /* 원하는 크기 설정 */
-            background-image: url('assets/save-button.png'); /* 이미지 경로 설정 */
-            background-size: cover; /* 이미지 크기를 버튼 크기에 맞추기 */
-            background-position: center; /* 이미지 가운데 정렬 */
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
+        button:disabled {
+            background-color: gray; /* 비활성화된 버튼의 배경색 */
+            color: white;
+            cursor: not-allowed; /* 마우스 커서 변경 */
         }
 
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-dark fixed-top" id="mainNav">
         <div class="container">
@@ -202,20 +202,14 @@
         <div class="button-container">
             <button onclick="goToMention()" style="font-size: 1rem;">이전 페이지로</button>
             <button id="captureBtn" style="font-size: 1rem;">Shoot!</button>
-            <button id="saveBtn" style="display: none;">Save</button>
             <button onclick="goToResult()" style="font-size: 1rem;">다른 사람의 한 마디 보기</button>
         </div>
     </div>
-
-    <!-- html2canvas 라이브러리 추가 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-
     
     <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const captureBtn = document.getElementById('captureBtn');
-        const saveBtn = document.getElementById('saveBtn');
         const context = canvas.getContext('2d');
 
         // 로컬 스토리지에서 4번째 질문에 대한 답을 불러오기
@@ -232,25 +226,18 @@
                 alert("카메라 접근을 허용해주세요.");
             }
         }
-        // Capture the current video frame
+
         captureBtn.addEventListener('click', () => {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            video.style.display = 'none';
-            canvas.style.display = 'block';
-            captureBtn.style.display = 'none';
-            saveBtn.style.display = 'inline-block';
+
+            // Shoot! 버튼 상태 변경
+            captureBtn.disabled = true; // 버튼 비활성화
+            captureBtn.textContent = "저장된 프레임을 찍어보세요!"; // 텍스트 변경
+            captureBtn.style.backgroundColor = "gray"; // 배경색 회색으로 변경
         });
-        // Save the captured image
-        saveBtn.addEventListener('click', () => {
-            const image = canvas.toDataURL("image/png");
-            const link = document.createElement('a');
-            link.href = image;
-            link.download = 'selfie.png';
-            link.click();
-            alert("Finder에서 사진을 확인한 후, Airdrop으로 저장해보세요.");
-        });
+
 
         // Initialize camera on page load
         window.addEventListener('load', startCamera);
