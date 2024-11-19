@@ -134,11 +134,6 @@
             smoothScrollTo(targetElement);
         });
 
-        document.getElementById('q0btn').addEventListener('click', function(event) {
-            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-            const targetElement = document.getElementById('q1');  // 이동할 대상 요소
-            smoothScrollTo(targetElement);
-        });
 
         
         function checkNicknameInput(event) {
@@ -155,6 +150,14 @@
             // #q1 섹션으로 스크롤 이동
             document.getElementById("q1").scrollIntoView({ behavior: 'smooth' });
         }
+
+
+        document.getElementById('.next-btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q1');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
     </script>
 
     <!-- Q1 -->
@@ -166,7 +169,7 @@
                     <form onsubmit="checkQuestion1Input(event)">
                         <h2 class="question-text-white">Q1. 당신이 해본 가장 큰 도전은 무엇이었나요?</h2>
                         <input id="input1" name="my-input1" type="text" class="pretendard-font" required />
-                        <button class="btn next-btn" style="margin-top: 50px;" id="q1btn">
+                        <button class="btn next-btn" style="margin-top: 50px;">
                             <img src="assets/icons8-next.png" alt="Next" class="arrow-icon">
                         </button>                                               
                     </form>
@@ -176,14 +179,6 @@
     </section>
 
     <script>
-
-
-        document.getElementById('q1btn').addEventListener('click', function(event) {
-            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-            const targetElement = document.getElementById('q2');  // 이동할 대상 요소
-            smoothScrollTo(targetElement);
-        });
-
 
         function checkQuestion1Input(event) {
             event.preventDefault(); // 기본 제출 방지
@@ -199,6 +194,14 @@
             // #q2 섹션으로 스크롤 이동
             document.getElementById("q2").scrollIntoView({ behavior: 'smooth' });
         }
+
+        document.getElementById('.next-btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q2');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
+
     </script>
 
     <!-- Q2 -->
@@ -210,7 +213,7 @@
                     <form onsubmit="checkQuestion2Input(event)">
                         <h2 class="question-text-black">Q2. 그 도전을 후회하시나요?</h2>
                         <input id="input2" name="my-input2" type="text" class="pretendard-font" required />
-                        <button class="btn next-btn" style="margin-top: 50px;" id="q2btn">
+                        <button class="btn next-btn" style="margin-top: 50px;">
                             <img src="assets/icons8-next.png" alt="Next" class="arrow-icon" style="filter: brightness(0) invert(0);">
                         </button>                                               
                     </form>
@@ -220,13 +223,6 @@
     </section>
 
     <script>
-
-        document.getElementById('q2btn').addEventListener('click', function(event) {
-            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-            const targetElement = document.getElementById('q3');  // 이동할 대상 요소
-            smoothScrollTo(targetElement);
-        });
-
 
 
         function checkQuestion2Input(event) {
@@ -243,9 +239,20 @@
             // #q3 섹션으로 스크롤 이동
             document.getElementById("q3").scrollIntoView({ behavior: 'smooth' });
         }
+
+        document.getElementById('.next-btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q3');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
+
+
+
     </script>
 
     <!-- Q3 -->
+
     <section class="bg-dark" id="q3">
         <div class="container px-4">
             <div class="row gx-4 justify-content-center">
@@ -253,7 +260,7 @@
                     <form onsubmit="checkQuestion3Input(event)">
                         <h2 class="question-text-white">Q3. 앞으로 하고 싶은 도전은 무엇인가요? <br>그 도전까지는 얼마만큼의 시간이 걸릴까요?</h2>
                         <input id="input3" name="my-input3" type="text" class="pretendard-font" required />
-                        <button class="btn next-btn" style="margin-top: 50px;" id-="q3btn">
+                        <button class="btn next-btn" style="margin-top: 50px;" >
                             <img src="assets/icons8-next.png" alt="Next" class="arrow-icon">
                         </button>                                               
                     </form>
@@ -263,11 +270,8 @@
     </section>
 
     <script>
-        document.getElementById('q3btn').addEventListener('click', function(event) {
-            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-            const targetElement = document.getElementById('q4');  // 이동할 대상 요소
-            smoothScrollTo(targetElement);
-        });
+
+
 
 
         function checkQuestion3Input(event) {
@@ -284,6 +288,14 @@
             // #q4 섹션으로 스크롤 이동
             document.getElementById("q4").scrollIntoView({ behavior: 'smooth' });
         }
+
+        document.getElementById('.next-btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q4');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
+
     </script>
 
     <!-- Q4 -->
@@ -295,7 +307,7 @@
                     <form onsubmit="checkQuestion4Input(event)">
                         <h2 class="question-text-black">Q4. 도전을 하는 자기 자신에게 <br>한 마디를 남겨주세요.</h2>
                         <input id="input4" name="my-input4" type="text" class="pretendard-font" required />
-                        <button class="btn next-btn" style="margin-top: 50px;" id="q4btn">
+                        <button class="btn next-btn" style="margin-top: 50px;">
                             <img src="assets/icons8-next.png" alt="Next" class="arrow-icon" style="filter: brightness(0) invert(0);">
                         </button>                                               
                     </form>
@@ -307,11 +319,6 @@
 
     <script>
 
-        document.getElementById('q4btn').addEventListener('click', function(event) {
-            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
-            const targetElement = document.getElementById('q5');  // 이동할 대상 요소
-            smoothScrollTo(targetElement);
-        });
 
 
         function checkQuestion4Input(event) {
@@ -328,6 +335,14 @@
             // #q5 섹션으로 스크롤 이동
             document.getElementById("q5").scrollIntoView({ behavior: 'smooth' });
         }
+
+        document.getElementById('.next-btn').addEventListener('click', function(event) {
+            event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+            const targetElement = document.getElementById('q5');  // 이동할 대상 요소
+            smoothScrollTo(targetElement);
+        });
+
+
     </script>
 
     <!-- Q5 -->
