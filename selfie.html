@@ -262,6 +262,9 @@
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
+            video.style.display = 'none';
+            canvas.style.display = 'block';
+
             // Shoot! 버튼 상태 변경
             captureBtn.disabled = true; // 버튼 비활성화
             captureBtn.style.backgroundColor = "gray"; // 배경색 회색으로 변경
