@@ -146,7 +146,11 @@
             localStorage.setItem('q0answer', nameInput);
                 
             // #q1 섹션으로 스크롤 이동
-            document.getElementById("q1").scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.next-btn').addEventListener('click', function(event) {
+                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+                const targetElement = document.getElementById('q1');  // 이동할 대상 요소
+                smoothScrollTo(targetElement);
+            });
         }
     </script>
 
@@ -181,7 +185,11 @@
             localStorage.setItem('q1answer', answer1);
                 
             // #q2 섹션으로 스크롤 이동
-            document.getElementById("q2").scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.next-btn').addEventListener('click', function(event) {
+                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+                const targetElement = document.getElementById('q2');  // 이동할 대상 요소
+                smoothScrollTo(targetElement);
+            });
         }
     </script>
 
@@ -216,7 +224,12 @@
             localStorage.setItem('q2answer', answer2);
                 
             // #q3 섹션으로 스크롤 이동
-            document.getElementById("q3").scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.next-btn').addEventListener('click', function(event) {
+                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+                const targetElement = document.getElementById('q3');  // 이동할 대상 요소
+                smoothScrollTo(targetElement);
+            });
+
         }
     </script>
 
@@ -251,7 +264,12 @@ Q
             localStorage.setItem('q3answer', answer3);
                 
             // #q4 섹션으로 스크롤 이동
-            document.getElementById("q4").scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.next-btn').addEventListener('click', function(event) {
+                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+                const targetElement = document.getElementById('q4');  // 이동할 대상 요소
+                smoothScrollTo(targetElement);
+            });
+
         }
     </script>
 
@@ -286,7 +304,12 @@ Q
             localStorage.setItem('q4answer', answer4);
                 
             // #q5 섹션으로 스크롤 이동
-            document.getElementById("q5").scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.next-btn').addEventListener('click', function(event) {
+                event.preventDefault();  // 기본 동작 방지 (즉시 이동하지 않음)
+                const targetElement = document.getElementById('q5');  // 이동할 대상 요소
+                smoothScrollTo(targetElement);
+            });
+
         }
     </script>
 
